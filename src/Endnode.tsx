@@ -19,6 +19,7 @@ const Endnode: React.FC<EndNodeProps> = (props: EndNodeProps) => {
   return (
     <div className={wrapperClassName}>
       <Handle
+        className='handleLeft'
         style={{ position: 'absolute' }}
         type="target"
         position={Position.Left}

@@ -36,6 +36,7 @@ const Questionnode: React.FC<QuestionNodeProps> = (props: QuestionNodeProps) => 
         <div className={styles.answerText}>{data.text}</div>
         <Handle
           id = {`${index}`}
+          className='handleRight'
           style={{ position: 'absolute',
           top: `${getPercent(index).toString()}%` }}
           type="source" position={Position.Right}/>
@@ -46,6 +47,7 @@ const Questionnode: React.FC<QuestionNodeProps> = (props: QuestionNodeProps) => 
     <div className={wrapperClassName}>
       <div className={styles.questionWrapper}>
         <Handle
+          className='handleLeft'
           style={{ position: 'absolute' }}
           type="target"
           position={Position.Left}
