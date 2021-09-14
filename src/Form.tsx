@@ -112,7 +112,9 @@ const Form: React.FC<FormProps> = (props: FormProps) => {
   const renderQuestions = () => questionStack.map(
     (id: string, index: number) => {
       const qData = props.formData.nodeMap[id];
-      if (qData.type === 'question') {
+      if (qData == null) {
+        return (null);
+      } else if (qData.type === 'question') {
         return (
           <Question
             key={index}

@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import ReactFlow, {addEdge, Background, BackgroundVariant, updateEdge} from 'react-flow-renderer';
+import ReactFlow, {addEdge, Background, BackgroundVariant, Controls, MiniMap, updateEdge} from 'react-flow-renderer';
 import styles from './App.module.css';
 import ButtonEdge from './ButtonEdge';
 import Header from './Header';
@@ -216,6 +216,22 @@ function App() {
               gap={24}
               size={1}
             />
+            <MiniMap
+              nodeColor={(node) => {
+                switch (node.type) {
+                  case 'input':
+                    return '#FCB332';
+                  case 'question':
+                    return '#EB4B64';
+                  case 'end':
+                    return '#6CE063';
+                  default:
+                    return '#eee';
+                }
+              }}
+              nodeStrokeWidth={3}
+            />
+            <Controls/>
           </ReactFlow>
         </SelectedNodeIdContext.Provider>
       </RemoveEdgeContext.Provider>

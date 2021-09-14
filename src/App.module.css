@@ -60,3 +60,7 @@
   max-width: 80vw;
   overflow-y: auto;
 }
+
+.controls {
+  z-index: 3;
+}
