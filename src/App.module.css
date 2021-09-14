@@ -62,5 +62,26 @@
 }
 
 .controls {
-  z-index: 3;
+  top: 10px;
+  display: flex;
+}
+
+.controls > * {
+  padding: 1rem;
+}
+
+.customControlBtn {
+
+}
+
+.controlStartIcon {
+  
+}
+
+.controlsQuestionIcon {
+
+}
+
+.controlsEndIcon {
+
 }

@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import ReactFlow, {addEdge, Background, BackgroundVariant, Controls, MiniMap, updateEdge} from 'react-flow-renderer';
+import ReactFlow, {addEdge, Background, BackgroundVariant, ControlButton, Controls, MiniMap, updateEdge} from 'react-flow-renderer';
 import styles from './App.module.css';
 import ButtonEdge from './ButtonEdge';
 import Header from './Header';
@@ -10,6 +10,7 @@ import React from 'react';
 import Endnode from './Endnode';
 import Form from './Form';
 import { MdRemoveCircle } from "react-icons/md";
+import { FaFlagCheckered, FaQuestionCircle, FaPlay } from "react-icons/fa";
 
 export enum NodeTypes {
   Start,
@@ -24,7 +25,7 @@ export const SelectedNodeIdContext = React.createContext('');
 function App() {
   const [ rfInstance, setRfInstance ] = useState(null);
   const [ title, setTitle ] = useState('My Calculator');
-  const [ lastSelectedPos, setLastSelectedPos ] = useState({ x:0, y:0 })
+  const [ lastSelectedPos, setLastSelectedPos ] = useState({ x:300, y:300 })
   const [ showForm, setShowForm ] = useState(false);
   const fileInput = useRef(null);
   /**
@@ -231,7 +232,20 @@ function App() {
               }}
               nodeStrokeWidth={3}
             />
-            <Controls/>
+            <Controls className={styles.controls}>
+              <ControlButton onClick={() => createNode(NodeTypes.Start)}
+                className={styles.customControlBtn}>
+                <FaPlay className={styles.controlStartIcon}/>
+              </ControlButton>
+              <ControlButton onClick={() => createNode(NodeTypes.Question)}
+                className={styles.customControlBtn}>
+                <FaQuestionCircle className={styles.controlsQuestionIcon}/>
+              </ControlButton>
+              <ControlButton onClick={() => createNode(NodeTypes.End)}
+                className={styles.customControlBtn}>
+                <FaFlagCheckered className={styles.controlsEndIcon}/>
+              </ControlButton>
+            </Controls>
           </ReactFlow>
         </SelectedNodeIdContext.Provider>
       </RemoveEdgeContext.Provider>
