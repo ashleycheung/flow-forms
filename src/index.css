@@ -11,3 +11,33 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+:root {
+  --pink: #EB4B64;
+  --bg: #1A192B;
+}
+
+.edgebutton {
+  background-color: var(--pink);
+  border-radius: 5px;
+  border: none;
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+.edgebutton:hover {
+  background-color: #8f2030;
+}
+
+.startNode {
+  background-color: #FFB319!important;
+  border: none!important;
+  border-radius: 10px!important;
+  font-size: 1.5rem!important;
+  font-size: 500!important;
+}

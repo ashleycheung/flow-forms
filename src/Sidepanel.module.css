@@ -1,0 +1,69 @@
+.sidePanel {
+  background-color: #38404E;
+  box-sizing: border-box;
+  grid-area: sidebar;
+  color: #ffffff;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.sidePanelLabel {
+  color: var(--pink);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.sidePanelTextInput {
+  font-size: 1.2rem;
+  width: 100%;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 1rem;
+  box-sizing: border-box;
+  background-color: #ECEDF1;
+}
+
+.panelBtn {
+  width: 100%;
+  border: none;
+  outline: none;
+  background-color: #6CE063;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  padding: 1rem;
+  cursor: pointer;
+  transition: transform .2s;
+  margin-top: 1rem;
+}
+
+.panelBtn:hover {
+  transform: scale(1.05); 
+}
+
+.deleteBtn {
+  margin-top: 3rem;
+  composes: panelBtn;
+  background-color: var(--pink);
+}
+
+.iconBtn {
+  font-size: 1.5rem;
+  transition: transform .2s;
+}
+
+.iconBtn:hover {
+  transform: scale(1.1); 
+}
+
+.answerWrapper {
+
+}
+
+.answerHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

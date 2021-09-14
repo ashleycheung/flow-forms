@@ -1,0 +1,14 @@
+.wrapper {
+  background-color: #3cdf62;
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.selected {
+  border: solid 5px #ECEDF1;
+  border-radius: 15px;
+}
+
+.resultText {
+  font-size: 1rem;
+}

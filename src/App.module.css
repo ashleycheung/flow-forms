@@ -1,0 +1,62 @@
+.app {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 20% 80%;
+  grid-template-rows: 10% 90%;
+  grid-template-areas: 
+    "header header"
+    "sidebar main";
+}
+
+.flowWrapper {
+  grid-area: main;
+  background-color: var(--bg);
+}
+
+.fileInput {
+  display: none;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: grid;
+  place-content: center;
+}
+
+.backdropElementWrapper {
+  background-color: #ffffff;
+  border-radius: 13px;
+}
+
+.backdropRemoveBtn {
+  font-size: 1.5rem;
+  color: var(--pink);
+  transition: transform .2s;
+  cursor: pointer;
+}
+
+.backdropRemoveBtn:hover {
+  transform: scale(1.1);
+}
+
+.backdropHeader {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.2rem;
+  background-color: #38404E;
+  border-top-left-radius : 10px;
+  border-top-right-radius : 10px;
+}
+
+.backdropMain {
+  margin-bottom: 20px;
+  max-height: 80vh;
+  max-width: 80vw;
+  overflow-y: auto;
+}
