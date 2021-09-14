@@ -11,6 +11,8 @@ import Endnode from './Endnode';
 import Form from './Form';
 import { MdRemoveCircle } from "react-icons/md";
 import { FaFlagCheckered, FaQuestionCircle, FaPlay } from "react-icons/fa";
+// @ts-ignore
+import formHtml from "./form.txt";
 
 export enum NodeTypes {
   Start,
@@ -126,15 +128,29 @@ function App() {
     const domElem = fileInput.current as any;
     domElem?.click();
     domElem.onchange = async () => {
-      const json = await fileToJSON(domElem.files[0]);
-      setFlowElements((json as any).elements);
+      try {
+        const json = await fileToJSON(domElem.files[0]);
+        setFlowElements((json as any).elements);
+      } catch (error) {
+        alert('Save file is invalid');
+        console.log(error);
+      }
     }
   }
-  const onExport = () => {
-    console.log(parseToGraph(flowElements));
+  const onExport = async () => {
+    // console.log(parseToGraph(flowElements));
+    // Convert to JSON
+    const formdata = JSON.stringify(parseToGraph(flowElements));
+    // Read and parse template html file
+    const resp = await fetch(formHtml);
+    const htmlStr = await resp.text();
+    const formDoc = (new DOMParser()).parseFromString(htmlStr, "text/html");
+    // Add json to html file
+    formDoc.getElementById('form-json')!.textContent = formdata;
+    const outputStr = formDoc.documentElement.outerHTML;
+    download(outputStr, `${title.replace(' ', '_')}.html`, 'text/plain');
   }
   const onSave = async () => {
-    // Update positions
     const data = JSON.stringify((rfInstance as any).toObject());
     download(data, `${title.replace(' ', '_')}.json`, 'text/plain');
   }
