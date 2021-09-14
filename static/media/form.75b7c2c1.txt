@@ -1,7 +1,7 @@
 <head>
   <style>
     :root {
-      --pink: #EB4B64;
+      --pink: #E21E51;
       --bg: #1A192B;
     }
     .formWrapper {
