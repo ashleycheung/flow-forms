@@ -137,8 +137,11 @@ const Form = props => {
       }, /*#__PURE__*/React.createElement("div", {
         className: styles.endTitle
       }, "Results"), /*#__PURE__*/React.createElement("div", {
-        className: styles.endResult
-      }, qData.result));
+        className: styles.endResult,
+        dangerouslySetInnerHTML: {
+          __html: qData.result
+        }
+      }));
     }
 
     return null;

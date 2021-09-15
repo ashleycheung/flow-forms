@@ -76,17 +76,7 @@
       endResult: 'endResult'
     }
     
-// interface QuestionProps {
-//   question: string;
-//   answers: Array<any>;
-//   /**
-//    * The index of the answer selected
-//    */
-//   selectedAns: number | null;
-//   setSelectedAns: Function;
-// }
-
-const Question = props => {
+  const Question = props => {
   const renderAnswers = () => props.answers.map((a, index) => /*#__PURE__*/React.createElement(Answer, {
     key: index,
     text: a.text,
@@ -214,8 +204,11 @@ const Form = props => {
       }, /*#__PURE__*/React.createElement("div", {
         className: styles.endTitle
       }, "Results"), /*#__PURE__*/React.createElement("div", {
-        className: styles.endResult
-      }, qData.result));
+        className: styles.endResult,
+        dangerouslySetInnerHTML: {
+          __html: qData.result
+        }
+      }));
     }
 
     return null;

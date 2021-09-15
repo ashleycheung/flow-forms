@@ -132,7 +132,9 @@ const Form= (props) => {
         return (
           <div key={index} className={styles.endWrapper}>
             <div className={styles.endTitle}>Results</div>
-            <div className={styles.endResult}>{qData.result}</div>
+            <div className={styles.endResult}
+              dangerouslySetInnerHTML={{ __html: qData.result }}
+            ></div>
           </div>
         )
       }

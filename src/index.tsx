@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-const VERSION = '1.0.2';
+const VERSION = '1.0.3';
 
 console.log(`Flow forms version: ${VERSION}`);
 
