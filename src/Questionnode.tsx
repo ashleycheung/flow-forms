@@ -27,10 +27,6 @@ const Questionnode: React.FC<QuestionNodeProps> = (props: QuestionNodeProps) => 
   if (selectedNodeId === props.id) {
     wrapperClassName = `${styles.questionNodeWrapper} ${styles.selected}`;
   }
-  const getPercent = (i: number) => {
-    const increment = 100 / (props.data.answers.length + 1);
-    return increment * (i + 1) + 0.5 * increment;
-  }
   const makeAnswerHandles = () => props.data.answers.map((data, index) => (
       <div key={index} className={styles.answerWrapper}>
         <div className={styles.answerText}>{data.text}</div>
@@ -38,7 +34,7 @@ const Questionnode: React.FC<QuestionNodeProps> = (props: QuestionNodeProps) => 
           id = {`${index}`}
           className='handleRight'
           style={{ position: 'absolute',
-          top: `${getPercent(index).toString()}%` }}
+          }}
           type="source" position={Position.Right}/>
       </div>
     ))
