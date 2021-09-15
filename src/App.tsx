@@ -148,6 +148,7 @@ function App() {
     // Add json to html file
     formDoc.getElementById('form-json')!.textContent = formdata;
     const outputStr = formDoc.documentElement.outerHTML;
+    console.log(outputStr);
     download(outputStr, `${title.replace(' ', '_')}.html`, 'text/plain');
   }
   const onSave = async () => {
