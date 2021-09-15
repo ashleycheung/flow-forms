@@ -29,7 +29,9 @@ const Questionnode: React.FC<QuestionNodeProps> = (props: QuestionNodeProps) => 
   }
   const makeAnswerHandles = () => props.data.answers.map((data, index) => (
       <div key={index} className={styles.answerWrapper}>
-        <div className={styles.answerText}>{data.text}</div>
+        <div className={styles.answerText}
+          dangerouslySetInnerHTML={{ __html: data.text }}
+        ></div>
         <Handle
           id = {`${index}`}
           className='handleRight'
@@ -48,9 +50,9 @@ const Questionnode: React.FC<QuestionNodeProps> = (props: QuestionNodeProps) => 
           type="target"
           position={Position.Left}
         />
-        <div className={styles.questionNodeText}>
-          {props.data.question}
-        </div>
+        <div className={styles.questionNodeText}
+          dangerouslySetInnerHTML={{ __html: props.data.question }}
+        ></div>
       </div>
       <div className={styles.answerList}>
         {makeAnswerHandles()}

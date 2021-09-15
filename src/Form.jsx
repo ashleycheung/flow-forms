@@ -23,9 +23,9 @@ const Question = (props) => {
   )
   return  (
     <div className={styles.questionWrapper}>
-      <div className={styles.questionText}>
-        {props.question}
-      </div>
+      <div className={styles.questionText}
+        dangerouslySetInnerHTML={{ __html: props.question }}
+      ></div>
       { renderAnswers() }
     </div>
   )
@@ -48,9 +48,9 @@ const Answer = (props) => {
   }
   if (props.selectedAns === props.index) {
     return (
-      <div onClick={onClick} className={`${styles.answer} ${styles.selected}`}>
-        {props.text}
-      </div>
+      <div onClick={onClick} className={`${styles.answer} ${styles.selected}`}
+        dangerouslySetInnerHTML={{ __html: props.text }}
+      ></div>
     )
   }
   return (

@@ -24,9 +24,9 @@ const Endnode: React.FC<EndNodeProps> = (props: EndNodeProps) => {
         type="target"
         position={Position.Left}
       />
-      <div className={styles.resultText}>
-        {props.data.result}
-      </div>
+      <div className={styles.resultText}
+        dangerouslySetInnerHTML={{ __html: props.data.result }}
+      ></div>
     </div>
   )
 }

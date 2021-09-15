@@ -21,8 +21,11 @@ const Question = props => {
   return /*#__PURE__*/React.createElement("div", {
     className: styles.questionWrapper
   }, /*#__PURE__*/React.createElement("div", {
-    className: styles.questionText
-  }, props.question), renderAnswers());
+    className: styles.questionText,
+    dangerouslySetInnerHTML: {
+      __html: props.question
+    }
+  }), renderAnswers());
 }; // interface AnswerProps {
 //   text: string;
 //   index: number;
@@ -43,8 +46,11 @@ const Answer = props => {
   if (props.selectedAns === props.index) {
     return /*#__PURE__*/React.createElement("div", {
       onClick: onClick,
-      className: `${styles.answer} ${styles.selected}`
-    }, props.text);
+      className: `${styles.answer} ${styles.selected}`,
+      dangerouslySetInnerHTML: {
+        __html: props.text
+      }
+    });
   }
 
   return /*#__PURE__*/React.createElement("div", {
