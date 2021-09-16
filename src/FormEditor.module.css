@@ -1,0 +1,44 @@
+.heading {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.subheading {
+  font-size: 1rem;
+  margin-right: 1rem;
+}
+
+.property {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.formEditor {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding-top: 1rem;
+  background-color: #ffffff;
+  display: flex;
+}
+
+.sideBar {
+  border-right: solid 1px #dddddd;
+}
+
+.sideBarItem.selected {
+  border-right: solid 5px var(--pink);
+}
+
+.sideBarItem {
+  border-right: solid 5px white;
+  color: black;
+  padding: 1rem;
+  cursor: pointer;
+  text-align: center;
+}
+
+.main {
+  padding: 1rem;
+}

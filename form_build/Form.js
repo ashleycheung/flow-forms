@@ -7,6 +7,7 @@ import React, { useState } from "react"; // interface QuestionProps {
 //    */
 //   selectedAns: number | null;
 //   setSelectedAns: Function;
+//   style: any | null;
 // }
 
 const Question = props => {
@@ -15,13 +16,19 @@ const Question = props => {
     text: a.text,
     index: index,
     selectedAns: props.selectedAns,
-    setSelectedAns: props.setSelectedAns
+    setSelectedAns: props.setSelectedAns,
+    style: props.answerStyles,
+    selectedStyle: props.selectedStyles
   }));
 
   return /*#__PURE__*/React.createElement("div", {
     className: styles.questionWrapper
   }, /*#__PURE__*/React.createElement("div", {
     className: styles.questionText,
+    style: {
+      color: props.style.color,
+      fontSize: `${props.style.fontSize}px`
+    },
     dangerouslySetInnerHTML: {
       __html: props.question
     }
@@ -47,6 +54,11 @@ const Answer = props => {
     return /*#__PURE__*/React.createElement("div", {
       onClick: onClick,
       className: `${styles.answer} ${styles.selected}`,
+      style: {
+        border: `solid 2px ${props.selectedStyle?.color}`,
+        color: props.selectedStyle?.color,
+        backgroundColor: props.selectedStyle?.backgroundColor
+      },
       dangerouslySetInnerHTML: {
         __html: props.text
       }
@@ -54,17 +66,49 @@ const Answer = props => {
   }
 
   return /*#__PURE__*/React.createElement("div", {
+    style: {
+      border: `solid 2px ${props.style?.color}`,
+      fontSize: `${props.style?.fontSize}px`,
+      color: props.style?.color,
+      backgroundColor: props.style?.backgroundColor
+    },
     onClick: onClick,
     className: styles.answer
   }, props.text);
-}; // interface FormProps {
-//   formData: {
-//     startId: string;
-//     nodeMap: {
-//       [key: string]: any
-//     }
-//   };
-// }
+};
+/*
+interface FormProps {
+  formData: {
+    startId: string;
+    nodeMap: {
+      [key: string]: any
+    },
+    styles: {
+      form?: {
+        backgroundColor?: string
+      }
+      question?: {
+        color?: string,
+        fontSize?: number,
+      },
+      answer?: {
+        fontSize?: number,
+        color?: string,
+        backgroundColor?: string,
+      },
+      selected?: {
+        color?: string;
+        backgroundColor?: string
+      },
+      result?: {
+        color?: string,
+        backgroundColor?: string,
+        fontSize?: number
+      },
+    }
+  };
+}
+*/
 
 
 const Form = props => {
@@ -79,7 +123,8 @@ const Form = props => {
 
   if (!(props.formData.startId in props.formData.nodeMap)) {
     return /*#__PURE__*/React.createElement("div", {
-      className: styles.formWrapper
+      className: styles.formWrapper,
+      style: props.formData?.styles?.form
     }, "Your form must have a valid start node");
   } // Add the initial question if empty
 
@@ -128,7 +173,10 @@ const Form = props => {
         question: `${index + 1}) ${qData.question}`,
         answers: qData.answers,
         selectedAns: answerMap[id] ?? null,
-        setSelectedAns: i => setSelectedAns(id, i)
+        setSelectedAns: i => setSelectedAns(id, i),
+        style: props.formData?.styles?.question ?? {},
+        answerStyles: props.formData?.styles?.answer,
+        selectedStyles: props.formData?.styles?.selected
       });
     } else if (qData.type === 'end') {
       return /*#__PURE__*/React.createElement("div", {
@@ -137,6 +185,11 @@ const Form = props => {
       }, /*#__PURE__*/React.createElement("div", {
         className: styles.endTitle
       }, "Results"), /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: `${props.formData?.styles?.result?.fontSize}px`,
+          color: props.formData?.styles?.result?.color,
+          backgroundColor: props.formData?.styles.result?.backgroundColor
+        },
         className: styles.endResult,
         dangerouslySetInnerHTML: {
           __html: qData.result
@@ -148,7 +201,8 @@ const Form = props => {
   });
 
   return /*#__PURE__*/React.createElement("div", {
-    className: styles.formWrapper
+    className: styles.formWrapper,
+    style: props.formData?.styles?.form
   }, renderQuestions());
 };
 

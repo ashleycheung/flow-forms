@@ -13,6 +13,7 @@ import { MdRemoveCircle } from "react-icons/md";
 import { FaFlagCheckered, FaQuestionCircle, FaPlay } from "react-icons/fa";
 // @ts-ignore
 import formHtml from "./form.txt";
+import FormEditor from './FormEditor';
 
 export enum NodeTypes {
   Start,
@@ -27,7 +28,8 @@ export const SelectedNodeIdContext = React.createContext('');
 function App() {
   const [ rfInstance, setRfInstance ] = useState(null);
   const [ title, setTitle ] = useState('My Calculator');
-  const [ lastSelectedPos, setLastSelectedPos ] = useState({ x:300, y:300 })
+  const [ lastSelectedPos, setLastSelectedPos ] = useState({ x:300, y:300 });
+  const [ formStyles, setFormStyles ] = useState({});
   const [ showForm, setShowForm ] = useState(false);
   const fileInput = useRef(null);
   /**
@@ -138,9 +140,8 @@ function App() {
     }
   }
   const onExport = async () => {
-    // console.log(parseToGraph(flowElements));
     // Convert to JSON
-    const formdata = JSON.stringify(parseToGraph(flowElements));
+    const formdata = JSON.stringify(parseToGraph(flowElements, formStyles));
     // Read and parse template html file
     const resp = await fetch(formHtml);
     const htmlStr = await resp.text();
@@ -148,7 +149,6 @@ function App() {
     // Add json to html file
     formDoc.getElementById('form-json')!.textContent = formdata;
     const outputStr = formDoc.documentElement.outerHTML;
-    console.log(outputStr);
     download(outputStr, `${title.replace(' ', '_')}.html`, 'text/plain');
   }
   const onSave = async () => {
@@ -186,13 +186,18 @@ function App() {
       return (
         <div className={styles.backdrop}>
           <div className={styles.backdropElementWrapper}>
+            <div className={styles.backdropMain}>
+              <FormEditor formStyles={formStyles} setFormStyles={setFormStyles}/>
+            </div>
+          </div>
+          <div className={styles.backdropElementWrapper}>
             <div className={styles.backdropHeader}>
               <MdRemoveCircle
                 className={styles.backdropRemoveBtn}
                 onClick={() => setShowForm(false)}/>
             </div>
             <div className={styles.backdropMain}>
-              <Form formData={parseToGraph(flowElements)}/>
+              <Form formData={parseToGraph(flowElements, formStyles)}/>
             </div>
           </div>
         </div>

@@ -25,13 +25,15 @@
   height: 100vh;
   z-index: 100;
   background-color: rgba(0, 0, 0, 0.5);
-  display: grid;
-  place-content: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .backdropElementWrapper {
   background-color: #ffffff;
   border-radius: 13px;
+  margin: 2rem;
 }
 
 .backdropRemoveBtn {

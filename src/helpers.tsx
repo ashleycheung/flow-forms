@@ -16,14 +16,16 @@ export interface FlowGraph {
   startId: string;
   nodeMap: {
     [key: string]: any
-  }
+  },
+  styles: any,
 }
 
-export function parseToGraph(flowData: any): FlowGraph {
+export function parseToGraph(flowData: any, formStyles: any): FlowGraph {
   let startNodeId = null;
   const output: FlowGraph = {
     startId: '',
-    nodeMap: {}
+    nodeMap: {},
+    styles: formStyles
   };
   // Add all the nodes in first
   for (const element of flowData) {
