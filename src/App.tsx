@@ -131,8 +131,9 @@ function App() {
     domElem?.click();
     domElem.onchange = async () => {
       try {
-        const json = await fileToJSON(domElem.files[0]);
-        setFlowElements((json as any).elements);
+        const json: any = await fileToJSON(domElem.files[0]);
+        setFlowElements(json.elements);
+        setFormStyles(json.styles ?? {});
       } catch (error) {
         alert('Save file is invalid');
         console.log(error);
@@ -152,8 +153,10 @@ function App() {
     download(outputStr, `${title.replace(' ', '_')}.html`, 'text/plain');
   }
   const onSave = async () => {
-    const data = JSON.stringify((rfInstance as any).toObject());
-    download(data, `${title.replace(' ', '_')}.json`, 'text/plain');
+    const data = (rfInstance as any).toObject();
+    data.styles = formStyles;
+    const dataJson = JSON.stringify(data);
+    download(dataJson, `${title.replace(' ', '_')}.json`, 'text/plain');
   }
   /**
    * Called when a node is clicked
